@@ -4,169 +4,146 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ink Arc Feather Muse – Service Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
-  /* 經典優雅字體與背景設定 */
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-    background-color: #fcfaf9; /* 極低飽和粉白 */
+    font-family: 'Montserrat', -apple-system, sans-serif;
+    background-color: #fcfaf9; /* 低飽和粉白 */
     color: #4a4a4a;
-    padding: 40px 20px;
+    padding: 60px 20px;
     margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    line-height: 1.6;
-    letter-spacing: 0.03em; /* 增加字距更顯精緻 */
+    letter-spacing: 0.05em;
   }
 
-  /* Logo 容器與優雅漂浮動畫 */
+  /* Logo 修正與漂浮動畫 */
   .logo-container {
     width: 100%;
-    max-width: 450px;
-    margin-bottom: 40px;
+    max-width: 400px;
+    margin-bottom: 50px;
     text-align: center;
-    animation: floating 5s ease-in-out infinite;
+    animation: floating 6s ease-in-out infinite;
   }
 
   .logo-container img {
     width: 100%;
     height: auto;
-    /* 輕微投影增加立體感 */
-    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.05));
+    display: block; /* 確保圖片渲染 */
+    margin: 0 auto;
   }
 
   @keyframes floating {
     0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-12px); }
     100% { transform: translateY(0px); }
   }
 
-  /* 計算機容器 */
   .container {
     width: 100%;
-    max-width: 550px;
+    max-width: 500px;
     background: #ffffff;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    padding: 50px;
+    border-radius: 4px; /* 經典設計通常偏向直角或微圓角 */
+    box-shadow: 0 20px 60px rgba(0,0,0,0.02);
   }
 
   h1 { 
-    color: #b5838d; /* 低飽和乾燥玫瑰粉 */
-    font-weight: 300; 
-    font-size: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    color: #b5838d; 
+    font-weight: 400; 
+    font-style: italic;
+    font-size: 1.8rem;
     text-align: center;
-    margin-bottom: 30px;
-    letter-spacing: 0.1em;
+    margin-bottom: 40px;
   }
 
   .formula-box {
-    background: #f9f6f6;
-    padding: 20px;
-    border-radius: 8px;
-    font-size: 12px;
-    color: #8e8e8e;
+    background: #fdfafb;
+    padding: 15px;
+    font-size: 11px;
+    color: #a0a0a0;
     margin-bottom: 30px;
-    border-left: 2px solid #e5dada;
+    border: 1px solid #f2ecee;
+    text-align: center;
   }
 
   label { 
     display: block; 
-    margin-top: 20px; 
-    font-weight: 400; 
-    font-size: 14px;
-    color: #666;
+    margin-top: 25px; 
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #888;
+    letter-spacing: 0.15em;
   }
 
-  /* 輸入框樣式優化 */
   input[type=number], select { 
-    padding: 12px; 
+    padding: 12px 0; 
     width: 100%; 
-    box-sizing: border-box;
-    border-radius: 5px; 
-    border: 1px solid #eee; 
-    background-color: #fafafa;
-    margin-top: 8px; 
-    font-size: 14px;
+    border: none;
+    border-bottom: 1px solid #eee; /* 優雅的底線式輸入 */
+    background: transparent;
+    margin-top: 5px; 
+    font-size: 15px;
     outline: none;
     transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
   }
 
-  input[type=number]:focus {
-    border-color: #b5838d;
-    background-color: #fff;
-  }
-
-  /* 服務項目選單 */
-  .checkbox-group { 
-    margin-top: 20px; 
-    background: #fff;
-  }
+  input:focus { border-bottom: 1px solid #b5838d; }
 
   .checkbox-item {
     display: flex;
     align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #f5f5f5;
+    padding: 15px 0;
+    border-bottom: 1px solid #f9f9f9;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .checkbox-item input {
-    margin-right: 12px;
+    margin-right: 15px;
     accent-color: #b5838d;
   }
 
-  /* 結果區域 */
   .result { 
-    margin-top: 30px; 
-    padding: 25px; 
-    background: #fdf8f8; 
-    border-radius: 8px; 
-    border: 1px inset #f2e6e6;
+    margin-top: 40px; 
+    padding: 30px; 
+    background: #fff; 
+    border-top: 1px solid #b5838d;
     text-align: center;
   }
 
   .total-price {
-    font-size: 24px;
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
     color: #b5838d;
     display: block;
-    margin-top: 10px;
-    font-weight: 300;
+    margin-top: 5px;
   }
 
-  .note { font-size: 12px; color: #aaa; margin-top: 6px; }
-
-  /* 免責聲明 */
   .contract { 
-    margin-top: 30px; 
-    padding: 15px; 
-    font-size: 13px;
-    background: #fcfcfc;
-    border: 1px solid #f0f0f0;
-    border-radius: 5px;
+    margin-top: 40px; 
+    font-size: 11px;
+    color: #999;
   }
 
-  /* 按鈕樣式 */
   button { 
-    margin-top: 30px; 
-    padding: 15px; 
-    border-radius: 4px; 
+    margin-top: 40px; 
+    padding: 18px; 
     background: #b5838d; 
     color: #fff; 
     border: none; 
     cursor: pointer; 
     width: 100%; 
-    font-size: 15px; 
-    letter-spacing: 0.2em;
-    transition: all 0.4s ease;
+    font-size: 13px; 
+    letter-spacing: 0.3em;
     text-transform: uppercase;
+    transition: 0.4s;
   }
 
-  button:hover { 
-    background: #a6737d; 
-    box-shadow: 0 5px 15px rgba(181, 131, 141, 0.3);
-  }
+  button:hover { background: #9d6b74; letter-spacing: 0.35em; }
 
 </style>
 </head>
@@ -174,14 +151,14 @@
 <body>
 
   <div class="logo-container">
-    <img src="IAFM.png" alt="Ink Arc Feather Muse Logo">
+    <img src="./IAFM.png" alt="Ink Arc Feather Muse Logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x150?text=Please+Upload+IAFM.png';">
   </div>
 
   <div class="container">
-    <h1>ESTIMATION TOOL</h1>
+    <h1>Quotation Tool</h1>
 
     <div class="formula-box">
-      Pricing logic: Base costs including labor, materials, and transportation are adjusted by a tiered profit margin to ensure professional service quality.
+      Custom pricing reflects international standards, logistics, and professional craftsmanship.
     </div>
 
     <div class="checkbox-group">
@@ -191,34 +168,34 @@
     </div>
 
     <label>Labor / 人工成本 (TWD)</label>
-    <input type="number" id="labor" value="800">
+    <input type="number" id="labor" value="400">
 
     <label>Material / 耗材 (TWD)</label>
     <input type="number" id="material" value="150">
 
-    <label>Transportation / 交通費</label>
-    <input type="number" id="transport" placeholder="0">
+    <label>Logistics & Shipping / 國際運輸與物流 (TWD)</label>
+    <input type="number" id="transport" value="20">
 
-    <label>Technician Fee / 指定技師</label>
-    <input type="number" id="techfee" placeholder="0">
+    <label>Technician Fee / 指定技師 (TWD)</label>
+    <input type="number" id="techfee" value="60">
 
-    <label>Currency / 選擇幣別</label>
+    <label>Currency / 結算幣別</label>
     <select id="currency">
       <option value="1">TWD (新台幣)</option>
-      <option value="0.03">EUR (歐元)</option>
-      <option value="0.045">AUD (澳幣)</option>
-      <option value="0.047">NZD (紐幣)</option>
-      <option value="0.33">SEK (瑞典克朗)</option>
+      <option value="0.028">EUR (歐元) 🇪🇺</option>
+      <option value="0.045">AUD (澳幣) 🇦🇺</option>
+      <option value="0.047">NZD (紐幣) 🇳🇿</option>
+      <option value="0.31">NOK (挪威克朗) 🇳🇴</option>
     </select>
 
     <div class="contract">
-      <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
-        <input type="checkbox" id="agree" style="margin-top: 3px; accent-color: #b5838d;"> 
-        <span>I agree to the service terms & conditions. / 我已確認並同意服務條款。</span>
+      <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+        <input type="checkbox" id="agree" style="accent-color: #b5838d;"> 
+        <span>Agreed to premium service terms.</span>
       </label>
     </div>
 
-    <button onclick="calc()">Calculate Result</button>
+    <button onclick="calc()">Get Quotation</button>
 
     <div class="result" id="result" style="display:none;"></div>
   </div>
@@ -234,32 +211,34 @@ function calc() {
   const agree = document.getElementById("agree").checked;
 
   if (!agree) {
-    alert("Please confirm the terms before proceeding.");
+    alert("Please confirm the terms.");
     return;
   }
 
-  let selectedServices = [];
   let serviceSum = 0;
+  let selectedNames = [];
   serviceCheckboxes.forEach(cb => {
     if (cb.checked) {
-      selectedServices.push(cb.dataset.name);
       serviceSum += Number(cb.value);
+      selectedNames.push(cb.dataset.name);
     }
   });
 
-  const baseCost = labor + material + transport + techfee + serviceSum;
-  if (baseCost === 0) { return; }
-
-  const profitFactor = Math.max(1.3, 6000 / baseCost);
-  const totalPrice = baseCost * profitFactor * currencyRate;
+  // 核心邏輯修正：
+  // 成本總額 = 人工 + 耗材 + 運輸 + 指定費
+  // 最終 TWD = (成本總額 * 1.3) + 基礎服務費 (6000)
+  // 這樣能保證歐元價格落在合理範圍（約 180-220 歐元，符合歐洲專業服務行情）
+  const totalCost = labor + material + transport + techfee;
+  const finalTwd = (totalCost * 1.3) + serviceSum;
+  const finalPrice = finalTwd * currencyRate;
 
   const resultDiv = document.getElementById("result");
   resultDiv.style.display = "block";
   resultDiv.innerHTML = `
-    <div style="font-size:13px; color:#8e8e8e; text-transform:uppercase; letter-spacing:0.1em;">Final Quotation</div>
-    <span class="total-price">${totalPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
-    <div style="font-size:12px; color:#aaa; margin-top:10px;">
-      Services: ${selectedServices.length > 0 ? selectedServices.join(", ") : "Standard Management"}
+    <div style="font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:10px;">Investment Value</div>
+    <span class="total-price">${finalPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+    <div style="font-size:11px; color:#c0c0c0; margin-top:15px;">
+      Services: ${selectedNames.length > 0 ? selectedNames.join(", ") : "Premium Care"}
     </div>
   `;
 }
@@ -267,4 +246,3 @@ function calc() {
 
 </body>
 </html>
-
