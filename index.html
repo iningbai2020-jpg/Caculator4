@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ink Arc Feather Muse – Service Calculator</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   body {
     font-family: 'Montserrat', -apple-system, sans-serif;
-    background-color: #fcfaf9; /* 低飽和粉白 */
-    color: #4a4a4a;
+    background-color: #fcfaf9;
+    color: #000000; /* 全域字體改為黑色 */
     padding: 60px 20px;
     margin: 0;
     display: flex;
@@ -18,20 +18,25 @@
     letter-spacing: 0.05em;
   }
 
-  /* Logo 修正與漂浮動畫 */
+  /* Logo 容器與動畫 */
   .logo-container {
     width: 100%;
     max-width: 400px;
     margin-bottom: 50px;
     text-align: center;
     animation: floating 6s ease-in-out infinite;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .logo-container img {
     width: 100%;
     height: auto;
-    display: block; /* 確保圖片渲染 */
+    display: block;
     margin: 0 auto;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
   }
 
   @keyframes floating {
@@ -45,8 +50,8 @@
     max-width: 500px;
     background: #ffffff;
     padding: 50px;
-    border-radius: 4px; /* 經典設計通常偏向直角或微圓角 */
-    box-shadow: 0 20px 60px rgba(0,0,0,0.02);
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.05);
   }
 
   h1 { 
@@ -62,11 +67,12 @@
   .formula-box {
     background: #fdfafb;
     padding: 15px;
-    font-size: 11px;
-    color: #a0a0a0;
+    font-size: 12px;
+    color: #333333; /* 加深配方說明顏色 */
     margin-bottom: 30px;
     border: 1px solid #f2ecee;
     text-align: center;
+    font-weight: 400;
   }
 
   label { 
@@ -74,84 +80,92 @@
     margin-top: 25px; 
     font-size: 12px;
     text-transform: uppercase;
-    color: #888;
+    color: #000000; /* 標籤改為純黑 */
     letter-spacing: 0.15em;
+    font-weight: 600;
   }
 
   input[type=number], select { 
     padding: 12px 0; 
     width: 100%; 
     border: none;
-    border-bottom: 1px solid #eee; /* 優雅的底線式輸入 */
+    border-bottom: 2px solid #333333; /* 加深底線 */
     background: transparent;
     margin-top: 5px; 
-    font-size: 15px;
+    font-size: 16px;
+    color: #000000;
     outline: none;
-    transition: 0.3s;
     font-family: 'Montserrat', sans-serif;
   }
 
-  input:focus { border-bottom: 1px solid #b5838d; }
+  input:focus { border-bottom: 2px solid #b5838d; }
 
   .checkbox-item {
     display: flex;
     align-items: center;
     padding: 15px 0;
-    border-bottom: 1px solid #f9f9f9;
+    border-bottom: 1px solid #eee;
     cursor: pointer;
     font-size: 14px;
+    color: #000000;
+    font-weight: 400;
   }
 
   .checkbox-item input {
     margin-right: 15px;
     accent-color: #b5838d;
+    transform: scale(1.2);
   }
 
   .result { 
     margin-top: 40px; 
     padding: 30px; 
     background: #fff; 
-    border-top: 1px solid #b5838d;
+    border: 2px solid #b5838d; /* 強化結果邊框 */
     text-align: center;
   }
 
   .total-price {
     font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    color: #b5838d;
+    font-size: 36px; /* 稍微加大報價字體 */
+    color: #000000; /* 報價金額改為黑色，顯得更專業權威 */
     display: block;
     margin-top: 5px;
-  }
-
-  .contract { 
-    margin-top: 40px; 
-    font-size: 11px;
-    color: #999;
+    font-weight: 600;
   }
 
   button { 
     margin-top: 40px; 
     padding: 18px; 
     background: #b5838d; 
-    color: #fff; 
+    color: #ffffff; 
     border: none; 
     cursor: pointer; 
     width: 100%; 
-    font-size: 13px; 
+    font-size: 14px; 
+    font-weight: 600;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     transition: 0.4s;
   }
 
-  button:hover { background: #9d6b74; letter-spacing: 0.35em; }
+  button:hover { background: #9d6b74; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
+  .contract span {
+    color: #000000;
+    font-weight: 400;
+  }
 </style>
 </head>
 
 <body>
 
   <div class="logo-container">
-    <img src="./IAFM.png" alt="Ink Arc Feather Muse Logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x150?text=Please+Upload+IAFM.png';">
+    <img src="./IAFM logo.png" alt="Ink Arc Feather Muse Logo" 
+         onerror="this.style.display='none'; document.getElementById('alt-logo').style.display='block';">
+    <div id="alt-logo" style="display:none; font-family:'Playfair Display', serif; font-style:italic; font-size:24px; color:#b5838d;">
+      Ink Arc, Feather Muse
+    </div>
   </div>
 
   <div class="container">
@@ -173,7 +187,7 @@
     <label>Material / 耗材 (TWD)</label>
     <input type="number" id="material" value="150">
 
-    <label>Logistics & Shipping / 國際運輸與物流 (TWD)</label>
+    <label>Logistics & Shipping / 物流運輸 (TWD)</label>
     <input type="number" id="transport" value="20">
 
     <label>Technician Fee / 指定技師 (TWD)</label>
@@ -188,7 +202,7 @@
       <option value="0.31">NOK (挪威克朗) 🇳🇴</option>
     </select>
 
-    <div class="contract">
+    <div class="contract" style="margin-top:40px; font-size:12px;">
       <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
         <input type="checkbox" id="agree" style="accent-color: #b5838d;"> 
         <span>Agreed to premium service terms.</span>
@@ -224,10 +238,6 @@ function calc() {
     }
   });
 
-  // 核心邏輯修正：
-  // 成本總額 = 人工 + 耗材 + 運輸 + 指定費
-  // 最終 TWD = (成本總額 * 1.3) + 基礎服務費 (6000)
-  // 這樣能保證歐元價格落在合理範圍（約 180-220 歐元，符合歐洲專業服務行情）
   const totalCost = labor + material + transport + techfee;
   const finalTwd = (totalCost * 1.3) + serviceSum;
   const finalPrice = finalTwd * currencyRate;
@@ -235,12 +245,18 @@ function calc() {
   const resultDiv = document.getElementById("result");
   resultDiv.style.display = "block";
   resultDiv.innerHTML = `
-    <div style="font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:10px;">Investment Value</div>
+    <div style="font-size:12px; color:#000000; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:10px; font-weight:600;">Investment Value</div>
     <span class="total-price">${finalPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
-    <div style="font-size:11px; color:#c0c0c0; margin-top:15px;">
+    <div style="font-size:12px; color:#333333; margin-top:15px; font-weight:400;">
       Services: ${selectedNames.length > 0 ? selectedNames.join(", ") : "Premium Care"}
     </div>
   `;
+}
+</script>
+
+</body>
+</html>
+
 }
 </script>
 
