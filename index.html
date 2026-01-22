@@ -7,9 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   body {
-    font-family: 'Montserrat', -apple-system, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Montserrat", sans-serif;
     background-color: #fcfaf9;
-    color: #000000; /* 全域字體改為黑色 */
+    color: #000000;
     padding: 60px 20px;
     margin: 0;
     display: flex;
@@ -18,7 +18,6 @@
     letter-spacing: 0.05em;
   }
 
-  /* Logo 容器與動畫 */
   .logo-container {
     width: 100%;
     max-width: 400px;
@@ -67,71 +66,99 @@
   .formula-box {
     background: #fdfafb;
     padding: 15px;
-    font-size: 12px;
-    color: #333333; /* 加深配方說明顏色 */
+    font-size: 11px;
+    color: #333333;
     margin-bottom: 30px;
     border: 1px solid #f2ecee;
     text-align: center;
-    font-weight: 400;
+    line-height: 1.8;
   }
 
-  label { 
+  /* 標籤樣式：中文在前，英文加粗 */
+  label.form-label { 
     display: block; 
     margin-top: 25px; 
-    font-size: 12px;
-    text-transform: uppercase;
-    color: #000000; /* 標籤改為純黑 */
-    letter-spacing: 0.15em;
-    font-weight: 600;
+    font-size: 13px;
+    color: #000000;
+    letter-spacing: 0.1em;
   }
 
+  label.form-label b {
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 5px;
+  }
+
+  /* 細緻淺粉灰底線 */
   input[type=number], select { 
-    padding: 12px 0; 
+    padding: 10px 0; 
     width: 100%; 
     border: none;
-    border-bottom: 2px solid #333333; /* 加深底線 */
+    border-bottom: 1px solid #eecfd4; 
     background: transparent;
     margin-top: 5px; 
     font-size: 16px;
     color: #000000;
     outline: none;
-    font-family: 'Montserrat', sans-serif;
   }
 
-  input:focus { border-bottom: 2px solid #b5838d; }
+  input:focus { border-bottom: 1px solid #b5838d; }
 
   .checkbox-item {
     display: flex;
     align-items: center;
     padding: 15px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #f9f4f5;
     cursor: pointer;
     font-size: 14px;
-    color: #000000;
-    font-weight: 400;
   }
 
   .checkbox-item input {
     margin-right: 15px;
     accent-color: #b5838d;
-    transform: scale(1.2);
+  }
+
+  /* 免責聲明文字 */
+  .disclaimer {
+    margin-top: 15px;
+    font-size: 10px;
+    color: #888;
+    line-height: 1.6;
+    font-style: italic;
   }
 
   .result { 
     margin-top: 40px; 
     padding: 30px; 
     background: #fff; 
-    border: 2px solid #b5838d; /* 強化結果邊框 */
+    border: 1px solid #b5838d;
     text-align: center;
   }
 
   .total-price {
     font-family: 'Playfair Display', serif;
-    font-size: 36px; /* 稍微加大報價字體 */
-    color: #000000; /* 報價金額改為黑色，顯得更專業權威 */
+    font-size: 36px;
+    color: #000000;
     display: block;
     margin-top: 5px;
     font-weight: 600;
+  }
+
+  /* 溫馨提醒小對話框 */
+  .thanks-note {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fdfafb;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #4a4a4a;
+    display: none; /* 初始隱藏 */
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   button { 
@@ -142,19 +169,14 @@
     border: none; 
     cursor: pointer; 
     width: 100%; 
-    font-size: 14px; 
+    font-size: 13px; 
     font-weight: 600;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     transition: 0.4s;
   }
 
-  button:hover { background: #9d6b74; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-
-  .contract span {
-    color: #000000;
-    font-weight: 400;
-  }
+  button:hover { background: #9d6b74; }
 </style>
 </head>
 
@@ -176,24 +198,28 @@
     </div>
 
     <div class="checkbox-group">
-      <label class="checkbox-item"><input type="checkbox" class="service" value="6000" data-name="Lash Lift"> Lash Lift (睫毛)</label>
-      <label class="checkbox-item"><input type="checkbox" class="service" value="6000" data-name="Brow Lamination"> Brow Lamination (眉毛)</label>
-      <label class="checkbox-item"><input type="checkbox" class="service" value="6000" data-name="Gentle Lip Polish"> Gentle Lip Polish (唇部去角質)</label>
+      <label class="checkbox-item"><input type="checkbox" class="service" value="6000" data-name="Lash Lift"> 睫毛管理 <b>LASH LIFT</b></label>
+      <label class="checkbox-item"><input type="checkbox" class="service" value="6000" data-name="Brow Lamination"> 眉毛管理 <b>BROW LAMINATION</b></label>
+      <label class="checkbox-item"><input type="checkbox" class="service" value="6000" data-name="Gentle Lip Polish"> 唇部去角質 <b>GENTLE LIP POLISH</b></label>
     </div>
 
-    <label>Labor / 人工成本 (TWD)</label>
+    <div class="disclaimer">
+      * Maintenance Disclaimer: Results vary based on individual hair cycles and aftercare. Keratin treatments require professional management to maintain optimal lash and brow health.
+    </div>
+
+    <label class="form-label">人工成本 <b>LABOR (TWD)</b></label>
     <input type="number" id="labor" value="400">
 
-    <label>Material / 耗材 (TWD)</label>
+    <label class="form-label">耗材成本 <b>MATERIAL (TWD)</b></label>
     <input type="number" id="material" value="150">
 
-    <label>Logistics & Shipping / 物流運輸 (TWD)</label>
+    <label class="form-label">物流運輸 <b>SHIPPING (TWD)</b></label>
     <input type="number" id="transport" value="20">
 
-    <label>Technician Fee / 指定技師 (TWD)</label>
+    <label class="form-label">指定技師 <b>TECHNICIAN FEE (TWD)</b></label>
     <input type="number" id="techfee" value="60">
 
-    <label>Currency / 結算幣別</label>
+    <label class="form-label">結算幣別 <b>CURRENCY</b></label>
     <select id="currency">
       <option value="1">TWD (新台幣)</option>
       <option value="0.028">EUR (歐元) 🇪🇺</option>
@@ -205,13 +231,21 @@
     <div class="contract" style="margin-top:40px; font-size:12px;">
       <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
         <input type="checkbox" id="agree" style="accent-color: #b5838d;"> 
-        <span>Agreed to premium service terms.</span>
+        <span>I agree to the service terms & aftercare protocols.</span>
       </label>
     </div>
 
-    <button onclick="calc()">Get Quotation</button>
+    <button onclick="calc()">Calculate Result</button>
 
     <div class="result" id="result" style="display:none;"></div>
+
+    <div class="thanks-note" id="thanksNote">
+      <p style="margin-top:0; font-weight:600; color:#b5838d;">期待下次再相見 💎</p>
+      <p>Thank you for choosing our service. We look forward to seeing you again soon!</p>
+      <hr style="border:0; border-top:1px solid #eee; margin:15px 0;">
+      <p style="font-size:11px;">If you require professional removal for your lashes or brows, please do not hesitate to contact us for assistance.</p>
+      <p style="font-size:11px;">如需卸除睫毛或眉毛，歡迎隨時聯繫我們預約專業處理。</p>
+    </div>
   </div>
 
 <script>
@@ -225,7 +259,7 @@ function calc() {
   const agree = document.getElementById("agree").checked;
 
   if (!agree) {
-    alert("Please confirm the terms.");
+    alert("Please confirm the terms before proceeding.");
     return;
   }
 
@@ -242,21 +276,16 @@ function calc() {
   const finalTwd = (totalCost * 1.3) + serviceSum;
   const finalPrice = finalTwd * currencyRate;
 
+  // 顯示結果
   const resultDiv = document.getElementById("result");
   resultDiv.style.display = "block";
   resultDiv.innerHTML = `
-    <div style="font-size:12px; color:#000000; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:10px; font-weight:600;">Investment Value</div>
+    <div style="font-size:11px; color:#000000; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:10px; font-weight:600;">Estimated Value</div>
     <span class="total-price">${finalPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
-    <div style="font-size:12px; color:#333333; margin-top:15px; font-weight:400;">
-      Services: ${selectedNames.length > 0 ? selectedNames.join(", ") : "Premium Care"}
-    </div>
   `;
-}
-</script>
 
-</body>
-</html>
-
+  // 顯示感謝小對話框
+  document.getElementById("thanksNote").style.display = "block";
 }
 </script>
 
